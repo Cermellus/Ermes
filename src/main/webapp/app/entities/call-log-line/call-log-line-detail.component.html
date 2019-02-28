@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="callLogLine">
+            <h2><span>Call Log Line</span> {{callLogLine.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Call Log Line Id</span></dt>
+                <dd>
+                    <span>{{callLogLine.callLogLineId}}</span>
+                </dd>
+                <dt><span>Call Log Comment</span></dt>
+                <dd>
+                    <span>{{callLogLine.callLogComment}}</span>
+                </dd>
+                <dt><span>Call Log Due Date</span></dt>
+                <dd>
+                    <span>{{callLogLine.callLogDueDate}}</span>
+                </dd>
+                <dt><span>Product Id</span></dt>
+                <dd>
+                    <div *ngIf="callLogLine.productIdId">
+                        <a [routerLink]="['/product', callLogLine.productIdId, 'view']">{{callLogLine.productIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Call Log Action Id</span></dt>
+                <dd>
+                    <div *ngIf="callLogLine.callLogActionIdId">
+                        <a [routerLink]="['/call-log-action', callLogLine.callLogActionIdId, 'view']">{{callLogLine.callLogActionIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Call Log Id</span></dt>
+                <dd>
+                    <div *ngIf="callLogLine.callLogIdId">
+                        <a [routerLink]="['/call-log', callLogLine.callLogIdId, 'view']">{{callLogLine.callLogIdId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/call-log-line', callLogLine.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -41,6 +41,24 @@ public class CacheConfiguration {
             cm.createCache(nz.co.it4biz.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(nz.co.it4biz.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(nz.co.it4biz.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CallLogAction.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CallLogLine.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CallLog.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Company.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Contact.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditReason.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditReferenceType.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditRequestLine.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditRequest.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditRequestStatus.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.CreditReturnType.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Prospect.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Product.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.Role.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.SalesPerson.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.ErmesUser.class.getName(), jcacheConfiguration);
+            cm.createCache(nz.co.it4biz.domain.AppUser.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

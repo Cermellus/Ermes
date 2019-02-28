@@ -1,0 +1,65 @@
+{
+    "name": "ErmesUser",
+    "fields": [
+        {
+            "fieldName": "ermesUserId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ermesUserUsername",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ermesUserPassword",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ermesUserName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ermesUserMail",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "roleId",
+            "otherEntityName": "role",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "ermesUser"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companyId",
+            "otherEntityName": "company",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "ermesUser"
+        }
+    ],
+    "changelogDate": "20190228034003",
+    "entityTableName": "ermes_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

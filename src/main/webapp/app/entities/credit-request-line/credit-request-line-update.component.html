@@ -1,0 +1,135 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-credit-request-line-heading">Create or edit a Credit Request Line</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!creditRequestLine.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="creditRequestLine.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineId">Credit Request Line Id</label>
+                    <input type="number" class="form-control" name="creditRequestLineId" id="field_creditRequestLineId"
+                        [(ngModel)]="creditRequestLine.creditRequestLineId" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestLineId?.dirty && editForm.controls.creditRequestLineId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestLineId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditRequestLineId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineAmount">Credit Request Line Amount</label>
+                    <input type="number" class="form-control" name="creditRequestLineAmount" id="field_creditRequestLineAmount"
+                        [(ngModel)]="creditRequestLine.creditRequestLineAmount" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestLineAmount?.dirty && editForm.controls.creditRequestLineAmount?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestLineAmount?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditRequestLineAmount?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineQtyCredited">Credit Request Line Qty Credited</label>
+                    <input type="number" class="form-control" name="creditRequestLineQtyCredited" id="field_creditRequestLineQtyCredited"
+                        [(ngModel)]="creditRequestLine.creditRequestLineQtyCredited" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestLineQtyCredited?.dirty && editForm.controls.creditRequestLineQtyCredited?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestLineQtyCredited?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditRequestLineQtyCredited?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineQtyReturn">Credit Request Line Qty Return</label>
+                    <input type="number" class="form-control" name="creditRequestLineQtyReturn" id="field_creditRequestLineQtyReturn"
+                        [(ngModel)]="creditRequestLine.creditRequestLineQtyReturn" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestLineQtyReturn?.dirty && editForm.controls.creditRequestLineQtyReturn?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestLineQtyReturn?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditRequestLineQtyReturn?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineComment">Credit Request Line Comment</label>
+                    <input type="text" class="form-control" name="creditRequestLineComment" id="field_creditRequestLineComment"
+                        [(ngModel)]="creditRequestLine.creditRequestLineComment" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestLineImage">Credit Request Line Image</label>
+                    <div>
+                        <div *ngIf="creditRequestLine.creditRequestLineImage" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(creditRequestLine.creditRequestLineImageContentType, creditRequestLine.creditRequestLineImage)">open</a><br>
+                            <span class="pull-left">{{creditRequestLine.creditRequestLineImageContentType}}, {{byteSize(creditRequestLine.creditRequestLineImage)}}</span>
+                            <button type="button" (click)="creditRequestLine.creditRequestLineImage=null;creditRequestLine.creditRequestLineImageContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_creditRequestLineImage" (change)="setFileData($event, creditRequestLine, 'creditRequestLineImage', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="creditRequestLineImage" id="field_creditRequestLineImage"
+                        [(ngModel)]="creditRequestLine.creditRequestLineImage" />
+                    <input type="hidden" class="form-control" name="creditRequestLineImageContentType" id="field_creditRequestLineImageContentType"
+                        [(ngModel)]="creditRequestLine.creditRequestLineImageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_productId">Product Id</label>
+                    <select class="form-control" id="field_productId" name="productId" [(ngModel)]="creditRequestLine.productIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonId">Credit Reason Id</label>
+                    <select class="form-control" id="field_creditReasonId" name="creditReasonId" [(ngModel)]="creditRequestLine.creditReasonIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="creditReasonOption.id" *ngFor="let creditReasonOption of creditreasons; trackBy: trackCreditReasonById">{{creditReasonOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReturnTypeId">Credit Return Type Id</label>
+                    <select class="form-control" id="field_creditReturnTypeId" name="creditReturnTypeId" [(ngModel)]="creditRequestLine.creditReturnTypeIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="creditReturnTypeOption.id" *ngFor="let creditReturnTypeOption of creditreturntypes; trackBy: trackCreditReturnTypeById">{{creditReturnTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestId">Credit Request Id</label>
+                    <select class="form-control" id="field_creditRequestId" name="creditRequestId" [(ngModel)]="creditRequestLine.creditRequestIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="creditRequestOption.id" *ngFor="let creditRequestOption of creditrequests; trackBy: trackCreditRequestById">{{creditRequestOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

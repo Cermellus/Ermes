@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-contact-heading">Create or edit a Contact</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!contact.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="contact.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_contactId">Contact Id</label>
+                    <input type="number" class="form-control" name="contactId" id="field_contactId"
+                        [(ngModel)]="contact.contactId" required/>
+                    <div [hidden]="!(editForm.controls.contactId?.dirty && editForm.controls.contactId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contactId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.contactId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_contactCode">Contact Code</label>
+                    <input type="text" class="form-control" name="contactCode" id="field_contactCode"
+                        [(ngModel)]="contact.contactCode" required/>
+                    <div [hidden]="!(editForm.controls.contactCode?.dirty && editForm.controls.contactCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contactCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_contactName">Contact Name</label>
+                    <input type="text" class="form-control" name="contactName" id="field_contactName"
+                        [(ngModel)]="contact.contactName" required/>
+                    <div [hidden]="!(editForm.controls.contactName?.dirty && editForm.controls.contactName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contactName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_contactMail">Contact Mail</label>
+                    <input type="text" class="form-control" name="contactMail" id="field_contactMail"
+                        [(ngModel)]="contact.contactMail" required/>
+                    <div [hidden]="!(editForm.controls.contactMail?.dirty && editForm.controls.contactMail?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contactMail?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_contactInactive">Contact Inactive</label>
+                    <input type="checkbox" class="form-control" name="contactInactive" id="field_contactInactive"
+                        [(ngModel)]="contact.contactInactive" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customerId">Customer Id</label>
+                    <select class="form-control" id="field_customerId" name="customerId" [(ngModel)]="contact.customerIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

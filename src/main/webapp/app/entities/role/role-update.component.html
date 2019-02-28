@@ -1,0 +1,132 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-role-heading">Create or edit a Role</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!role.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="role.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleId">Role Id</label>
+                    <input type="number" class="form-control" name="roleId" id="field_roleId"
+                        [(ngModel)]="role.roleId" required/>
+                    <div [hidden]="!(editForm.controls.roleId?.dirty && editForm.controls.roleId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.roleId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleDescription">Role Description</label>
+                    <input type="text" class="form-control" name="roleDescription" id="field_roleDescription"
+                        [(ngModel)]="role.roleDescription" required/>
+                    <div [hidden]="!(editForm.controls.roleDescription?.dirty && editForm.controls.roleDescription?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleDescription?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleApprove">Role Approve</label>
+                    <input type="checkbox" class="form-control" name="roleApprove" id="field_roleApprove"
+                        [(ngModel)]="role.roleApprove" />
+                    <div [hidden]="!(editForm.controls.roleApprove?.dirty && editForm.controls.roleApprove?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleApprove?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleInsert">Role Insert</label>
+                    <input type="checkbox" class="form-control" name="roleInsert" id="field_roleInsert"
+                        [(ngModel)]="role.roleInsert" />
+                    <div [hidden]="!(editForm.controls.roleInsert?.dirty && editForm.controls.roleInsert?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleInsert?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleEdit">Role Edit</label>
+                    <input type="checkbox" class="form-control" name="roleEdit" id="field_roleEdit"
+                        [(ngModel)]="role.roleEdit" />
+                    <div [hidden]="!(editForm.controls.roleEdit?.dirty && editForm.controls.roleEdit?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleEdit?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleReturn">Role Return</label>
+                    <input type="checkbox" class="form-control" name="roleReturn" id="field_roleReturn"
+                        [(ngModel)]="role.roleReturn" />
+                    <div [hidden]="!(editForm.controls.roleReturn?.dirty && editForm.controls.roleReturn?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleReturn?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleProcess">Role Process</label>
+                    <input type="checkbox" class="form-control" name="roleProcess" id="field_roleProcess"
+                        [(ngModel)]="role.roleProcess" />
+                    <div [hidden]="!(editForm.controls.roleProcess?.dirty && editForm.controls.roleProcess?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleProcess?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleSeeAllRquests">Role See All Rquests</label>
+                    <input type="checkbox" class="form-control" name="roleSeeAllRquests" id="field_roleSeeAllRquests"
+                        [(ngModel)]="role.roleSeeAllRquests" />
+                    <div [hidden]="!(editForm.controls.roleSeeAllRquests?.dirty && editForm.controls.roleSeeAllRquests?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleSeeAllRquests?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleCourierClaim">Role Courier Claim</label>
+                    <input type="checkbox" class="form-control" name="roleCourierClaim" id="field_roleCourierClaim"
+                        [(ngModel)]="role.roleCourierClaim" />
+                    <div [hidden]="!(editForm.controls.roleCourierClaim?.dirty && editForm.controls.roleCourierClaim?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.roleCourierClaim?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleComment">Role Comment</label>
+                    <input type="text" class="form-control" name="roleComment" id="field_roleComment"
+                        [(ngModel)]="role.roleComment" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

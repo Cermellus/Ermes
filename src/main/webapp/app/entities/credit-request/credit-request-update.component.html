@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-credit-request-heading">Create or edit a Credit Request</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!creditRequest.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="creditRequest.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestId">Credit Request Id</label>
+                    <input type="number" class="form-control" name="creditRequestId" id="field_creditRequestId"
+                        [(ngModel)]="creditRequest.creditRequestId" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestId?.dirty && editForm.controls.creditRequestId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditRequestId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestDate">Credit Request Date</label>
+                    <div class="input-group">
+                        <input id="field_creditRequestDate" type="text" class="form-control" name="creditRequestDate" ngbDatepicker  #creditRequestDateDp="ngbDatepicker" [(ngModel)]="creditRequest.creditRequestDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="creditRequestDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.creditRequestDate?.dirty && editForm.controls.creditRequestDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestCode">Credit Request Code</label>
+                    <input type="text" class="form-control" name="creditRequestCode" id="field_creditRequestCode"
+                        [(ngModel)]="creditRequest.creditRequestCode" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestCode?.dirty && editForm.controls.creditRequestCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestReference">Credit Request Reference</label>
+                    <input type="text" class="form-control" name="creditRequestReference" id="field_creditRequestReference"
+                        [(ngModel)]="creditRequest.creditRequestReference" required/>
+                    <div [hidden]="!(editForm.controls.creditRequestReference?.dirty && editForm.controls.creditRequestReference?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditRequestReference?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestContactMail">Credit Request Contact Mail</label>
+                    <input type="text" class="form-control" name="creditRequestContactMail" id="field_creditRequestContactMail"
+                        [(ngModel)]="creditRequest.creditRequestContactMail" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestRejectReason">Credit Request Reject Reason</label>
+                    <input type="text" class="form-control" name="creditRequestRejectReason" id="field_creditRequestRejectReason"
+                        [(ngModel)]="creditRequest.creditRequestRejectReason" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customerId">Customer Id</label>
+                    <select class="form-control" id="field_customerId" name="customerId" [(ngModel)]="creditRequest.customerIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReferenceTypeId">Credit Reference Type Id</label>
+                    <select class="form-control" id="field_creditReferenceTypeId" name="creditReferenceTypeId" [(ngModel)]="creditRequest.creditReferenceTypeIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="creditReferenceTypeOption.id" *ngFor="let creditReferenceTypeOption of creditreferencetypes; trackBy: trackCreditReferenceTypeById">{{creditReferenceTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditRequestStatusId">Credit Request Status Id</label>
+                    <select class="form-control" id="field_creditRequestStatusId" name="creditRequestStatusId" [(ngModel)]="creditRequest.creditRequestStatusIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="creditRequestStatusOption.id" *ngFor="let creditRequestStatusOption of creditrequeststatuses; trackBy: trackCreditRequestStatusById">{{creditRequestStatusOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserId">App User Id</label>
+                    <select class="form-control" id="field_appUserId" name="appUserId" [(ngModel)]="creditRequest.appUserIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appUserOption.id" *ngFor="let appUserOption of appusers; trackBy: trackAppUserById">{{appUserOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

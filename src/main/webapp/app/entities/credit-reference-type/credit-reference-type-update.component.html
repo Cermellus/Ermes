@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-credit-reference-type-heading">Create or edit a Credit Reference Type</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!creditReferenceType.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="creditReferenceType.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReferenceTypeId">Credit Reference Type Id</label>
+                    <input type="number" class="form-control" name="creditReferenceTypeId" id="field_creditReferenceTypeId"
+                        [(ngModel)]="creditReferenceType.creditReferenceTypeId" required/>
+                    <div [hidden]="!(editForm.controls.creditReferenceTypeId?.dirty && editForm.controls.creditReferenceTypeId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReferenceTypeId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditReferenceTypeId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReferenceTypeDescription">Credit Reference Type Description</label>
+                    <input type="text" class="form-control" name="creditReferenceTypeDescription" id="field_creditReferenceTypeDescription"
+                        [(ngModel)]="creditReferenceType.creditReferenceTypeDescription" required/>
+                    <div [hidden]="!(editForm.controls.creditReferenceTypeDescription?.dirty && editForm.controls.creditReferenceTypeDescription?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReferenceTypeDescription?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

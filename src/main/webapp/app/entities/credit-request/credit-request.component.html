@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span>Credit Requests</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-credit-request" [routerLink]="['/credit-request/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Credit Request
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="creditRequests">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Credit Request Id</span></th>
+            <th><span>Credit Request Date</span></th>
+            <th><span>Credit Request Code</span></th>
+            <th><span>Credit Request Reference</span></th>
+            <th><span>Credit Request Contact Mail</span></th>
+            <th><span>Credit Request Reject Reason</span></th>
+            <th><span>Customer Id</span></th>
+            <th><span>Credit Reference Type Id</span></th>
+            <th><span>Credit Request Status Id</span></th>
+            <th><span>App User Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let creditRequest of creditRequests ;trackBy: trackId">
+                <td><a [routerLink]="['/credit-request', creditRequest.id, 'view' ]">{{creditRequest.id}}</a></td>
+                <td>{{creditRequest.creditRequestId}}</td>
+                <td>{{creditRequest.creditRequestDate | date:'mediumDate'}}</td>
+                <td>{{creditRequest.creditRequestCode}}</td>
+                <td>{{creditRequest.creditRequestReference}}</td>
+                <td>{{creditRequest.creditRequestContactMail}}</td>
+                <td>{{creditRequest.creditRequestRejectReason}}</td>
+                <td>
+                    <div *ngIf="creditRequest.customerIdId">
+                        <a [routerLink]="['../customer', creditRequest.customerIdId , 'view' ]" >{{creditRequest.customerIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequest.creditReferenceTypeIdId">
+                        <a [routerLink]="['../credit-reference-type', creditRequest.creditReferenceTypeIdId , 'view' ]" >{{creditRequest.creditReferenceTypeIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequest.creditRequestStatusIdId">
+                        <a [routerLink]="['../credit-request-status', creditRequest.creditRequestStatusIdId , 'view' ]" >{{creditRequest.creditRequestStatusIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequest.appUserIdId">
+                        <a [routerLink]="['../app-user', creditRequest.appUserIdId , 'view' ]" >{{creditRequest.appUserIdId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/credit-request', creditRequest.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/credit-request', creditRequest.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'credit-request', { outlets: { popup: creditRequest.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

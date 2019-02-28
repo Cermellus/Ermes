@@ -1,0 +1,81 @@
+{
+    "name": "CreditRequestLine",
+    "fields": [
+        {
+            "fieldName": "creditRequestLineId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestLineAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestLineQtyCredited",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestLineQtyReturn",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestLineComment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creditRequestLineImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productId",
+            "otherEntityName": "product",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequestLine"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "creditReasonId",
+            "otherEntityName": "creditReason",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequestLine"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "creditReturnTypeId",
+            "otherEntityName": "creditReturnType",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequestLine"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "creditRequestId",
+            "otherEntityName": "creditRequest",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequestLine"
+        }
+    ],
+    "changelogDate": "20190228032612",
+    "entityTableName": "credit_request_line",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

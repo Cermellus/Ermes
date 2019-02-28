@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sales-person-heading">Create or edit a Sales Person</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!salesPerson.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="salesPerson.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salesPersonId">Sales Person Id</label>
+                    <input type="number" class="form-control" name="salesPersonId" id="field_salesPersonId"
+                        [(ngModel)]="salesPerson.salesPersonId" required/>
+                    <div [hidden]="!(editForm.controls.salesPersonId?.dirty && editForm.controls.salesPersonId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.salesPersonId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.salesPersonId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salesPersonCode">Sales Person Code</label>
+                    <input type="text" class="form-control" name="salesPersonCode" id="field_salesPersonCode"
+                        [(ngModel)]="salesPerson.salesPersonCode" required/>
+                    <div [hidden]="!(editForm.controls.salesPersonCode?.dirty && editForm.controls.salesPersonCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.salesPersonCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salesPersonName">Sales Person Name</label>
+                    <input type="text" class="form-control" name="salesPersonName" id="field_salesPersonName"
+                        [(ngModel)]="salesPerson.salesPersonName" required/>
+                    <div [hidden]="!(editForm.controls.salesPersonName?.dirty && editForm.controls.salesPersonName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.salesPersonName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salesPersonMail">Sales Person Mail</label>
+                    <input type="text" class="form-control" name="salesPersonMail" id="field_salesPersonMail"
+                        [(ngModel)]="salesPerson.salesPersonMail" required/>
+                    <div [hidden]="!(editForm.controls.salesPersonMail?.dirty && editForm.controls.salesPersonMail?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.salesPersonMail?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salesPersonInactive">Sales Person Inactive</label>
+                    <input type="checkbox" class="form-control" name="salesPersonInactive" id="field_salesPersonInactive"
+                        [(ngModel)]="salesPerson.salesPersonInactive" />
+                    <div [hidden]="!(editForm.controls.salesPersonInactive?.dirty && editForm.controls.salesPersonInactive?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.salesPersonInactive?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

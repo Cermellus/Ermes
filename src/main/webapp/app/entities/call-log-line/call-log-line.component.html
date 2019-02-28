@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span>Call Log Lines</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-call-log-line" [routerLink]="['/call-log-line/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Call Log Line
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="callLogLines">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Call Log Line Id</span></th>
+            <th><span>Call Log Comment</span></th>
+            <th><span>Call Log Due Date</span></th>
+            <th><span>Product Id</span></th>
+            <th><span>Call Log Action Id</span></th>
+            <th><span>Call Log Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let callLogLine of callLogLines ;trackBy: trackId">
+                <td><a [routerLink]="['/call-log-line', callLogLine.id, 'view' ]">{{callLogLine.id}}</a></td>
+                <td>{{callLogLine.callLogLineId}}</td>
+                <td>{{callLogLine.callLogComment}}</td>
+                <td>{{callLogLine.callLogDueDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="callLogLine.productIdId">
+                        <a [routerLink]="['../product', callLogLine.productIdId , 'view' ]" >{{callLogLine.productIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="callLogLine.callLogActionIdId">
+                        <a [routerLink]="['../call-log-action', callLogLine.callLogActionIdId , 'view' ]" >{{callLogLine.callLogActionIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="callLogLine.callLogIdId">
+                        <a [routerLink]="['../call-log', callLogLine.callLogIdId , 'view' ]" >{{callLogLine.callLogIdId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/call-log-line', callLogLine.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/call-log-line', callLogLine.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'call-log-line', { outlets: { popup: callLogLine.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

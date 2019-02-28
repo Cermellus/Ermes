@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="creditRequestLine">
+            <h2><span>Credit Request Line</span> {{creditRequestLine.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Credit Request Line Id</span></dt>
+                <dd>
+                    <span>{{creditRequestLine.creditRequestLineId}}</span>
+                </dd>
+                <dt><span>Credit Request Line Amount</span></dt>
+                <dd>
+                    <span>{{creditRequestLine.creditRequestLineAmount}}</span>
+                </dd>
+                <dt><span>Credit Request Line Qty Credited</span></dt>
+                <dd>
+                    <span>{{creditRequestLine.creditRequestLineQtyCredited}}</span>
+                </dd>
+                <dt><span>Credit Request Line Qty Return</span></dt>
+                <dd>
+                    <span>{{creditRequestLine.creditRequestLineQtyReturn}}</span>
+                </dd>
+                <dt><span>Credit Request Line Comment</span></dt>
+                <dd>
+                    <span>{{creditRequestLine.creditRequestLineComment}}</span>
+                </dd>
+                <dt><span>Credit Request Line Image</span></dt>
+                <dd>
+                    <div *ngIf="creditRequestLine.creditRequestLineImage">
+                        <a (click)="openFile(creditRequestLine.creditRequestLineImageContentType, creditRequestLine.creditRequestLineImage)">open</a>
+                        {{creditRequestLine.creditRequestLineImageContentType}}, {{byteSize(creditRequestLine.creditRequestLineImage)}}
+                    </div>
+                </dd>
+                <dt><span>Product Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequestLine.productIdId">
+                        <a [routerLink]="['/product', creditRequestLine.productIdId, 'view']">{{creditRequestLine.productIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Credit Reason Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequestLine.creditReasonIdId">
+                        <a [routerLink]="['/credit-reason', creditRequestLine.creditReasonIdId, 'view']">{{creditRequestLine.creditReasonIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Credit Return Type Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequestLine.creditReturnTypeIdId">
+                        <a [routerLink]="['/credit-return-type', creditRequestLine.creditReturnTypeIdId, 'view']">{{creditRequestLine.creditReturnTypeIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Credit Request Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequestLine.creditRequestIdId">
+                        <a [routerLink]="['/credit-request', creditRequestLine.creditRequestIdId, 'view']">{{creditRequestLine.creditRequestIdId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/credit-request-line', creditRequestLine.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

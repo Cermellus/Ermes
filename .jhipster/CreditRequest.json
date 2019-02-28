@@ -1,0 +1,80 @@
+{
+    "name": "CreditRequest",
+    "fields": [
+        {
+            "fieldName": "creditRequestId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestReference",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditRequestContactMail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creditRequestRejectReason",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customerId",
+            "otherEntityName": "customer",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequest"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "creditReferenceTypeId",
+            "otherEntityName": "creditReferenceType",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequest"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "creditRequestStatusId",
+            "otherEntityName": "creditRequestStatus",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequest"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "appUserId",
+            "otherEntityName": "appUser",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "creditRequest"
+        }
+    ],
+    "changelogDate": "20190228032613",
+    "entityTableName": "credit_request",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

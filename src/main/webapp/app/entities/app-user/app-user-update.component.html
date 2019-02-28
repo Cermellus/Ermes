@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-app-user-heading">Create or edit a App User</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!appUser.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="appUser.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserId">App User Id</label>
+                    <input type="number" class="form-control" name="appUserId" id="field_appUserId"
+                        [(ngModel)]="appUser.appUserId" required/>
+                    <div [hidden]="!(editForm.controls.appUserId?.dirty && editForm.controls.appUserId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.appUserId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.appUserId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserUsername">App User Username</label>
+                    <input type="text" class="form-control" name="appUserUsername" id="field_appUserUsername"
+                        [(ngModel)]="appUser.appUserUsername" required/>
+                    <div [hidden]="!(editForm.controls.appUserUsername?.dirty && editForm.controls.appUserUsername?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.appUserUsername?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserPassword">App User Password</label>
+                    <input type="text" class="form-control" name="appUserPassword" id="field_appUserPassword"
+                        [(ngModel)]="appUser.appUserPassword" required/>
+                    <div [hidden]="!(editForm.controls.appUserPassword?.dirty && editForm.controls.appUserPassword?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.appUserPassword?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserName">App User Name</label>
+                    <input type="text" class="form-control" name="appUserName" id="field_appUserName"
+                        [(ngModel)]="appUser.appUserName" required/>
+                    <div [hidden]="!(editForm.controls.appUserName?.dirty && editForm.controls.appUserName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.appUserName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserMail">App User Mail</label>
+                    <input type="text" class="form-control" name="appUserMail" id="field_appUserMail"
+                        [(ngModel)]="appUser.appUserMail" required/>
+                    <div [hidden]="!(editForm.controls.appUserMail?.dirty && editForm.controls.appUserMail?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.appUserMail?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleId">Role Id</label>
+                    <select class="form-control" id="field_roleId" name="roleId" [(ngModel)]="appUser.roleIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="roleOption.id" *ngFor="let roleOption of roles; trackBy: trackRoleById">{{roleOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyId">Company Id</label>
+                    <select class="form-control" id="field_companyId" name="companyId" [(ngModel)]="appUser.companyIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

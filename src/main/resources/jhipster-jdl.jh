@@ -1,0 +1,180 @@
+entity CallLogAction {
+	callLogActionId Integer required,
+    callLogActionDescription String required
+}
+
+entity CallLogLine {
+	callLogLineId Integer required,
+    callLogComment String,
+    callLogDueDate LocalDate required
+}
+
+entity CallLog {
+    callLogId Integer required,
+	callLogComment String required,
+	callLogDate LocalDate required,
+	callLogContactMail String
+}
+
+entity Company {
+	companyId Integer required,
+    companyName String required,
+    companyFtpFolder String required,
+}
+
+entity Contact {
+	contactId Integer required,
+	contactCode String required,
+    contactName String required,
+    contactMail String required,
+    contactInactive Boolean
+}
+
+entity CreditReason {
+	creditReasonId Integer required,
+    creditReasonDescription String required,
+    creditReasonCode String required,
+    creditReasonProductRequired Boolean required,
+    creditReasonCourierClaim Boolean required
+}
+
+entity CreditReferenceType {
+	creditReferenceTypeId Integer required,
+	creditReferenceTypeDescription String required
+}
+
+entity CreditRequestLine {
+	creditRequestLineId Integer required,
+	creditRequestLineAmount BigDecimal required,
+    creditRequestLineQtyCredited BigDecimal required,
+    creditRequestLineQtyReturn BigDecimal required,
+    creditRequestLineComment String,
+    creditRequestLineImage Blob
+}
+
+entity CreditRequest {
+	creditRequestId Integer required,
+	creditRequestDate LocalDate required,
+    creditRequestCode String required,
+    creditRequestReference String required,
+    creditRequestContactMail String,
+    creditRequestRejectReason String
+}
+
+entity CreditRequestStatus {
+	creditRequestStatusId Integer required,
+	creditRequestStatusDescription String required,
+    creditRequestStatusExport Boolean required
+}
+
+entity CreditReturnType {
+	creditReturnTypeId Integer required,
+	creditReturnTypeDescription String required,
+    creditReturnTypeArrangeReturn Boolean required
+}
+
+entity Customer {
+	customerId Integer required,
+	customerCode String required,
+    customerName String required,
+    customerInactive Boolean required
+}
+
+entity Prospect {
+	prospectId Integer required,
+    prospectName String required
+}
+
+entity Product {
+	productId Integer required,
+	productCode String required,
+    productDescription String required,
+    productInactive Boolean required
+}
+
+entity Role {
+	roleId Integer required,
+    roleDescription String required,
+    roleApprove Boolean required,
+    roleInsert Boolean required,
+    roleEdit Boolean required,
+    roleReturn Boolean required,
+    roleProcess Boolean required,
+    roleSeeAllRquests Boolean required,
+    roleCourierClaim Boolean required,
+    roleComment String
+}
+
+entity SalesPerson {
+	salesPersonId Integer required,
+	salesPersonCode String required,
+    salesPersonName String required,
+    salesPersonMail String required,
+    salesPersonInactive Boolean required
+}
+
+entity AppUser {
+	appUserId Integer required,
+	appUserUsername String required,
+    appUserPassword String required,
+    appUserName String required,
+    appUserMail String required
+}
+
+
+relationship ManyToOne {
+	CallLogLine{productId} to Product
+	CallLogLine{callLogActionId} to CallLogAction
+    CallLogLine{callLogId} to CallLog
+}
+
+relationship ManyToOne {
+	CallLog{customerId} to Customer
+    CallLog{prospectId} to Prospect
+    CallLog{appUserId} to AppUser
+}
+
+relationship ManyToOne {
+	Contact{customerId} to Customer
+}
+
+relationship ManyToOne {
+	Customer{salesPersonId} to SalesPerson
+}
+
+relationship OneToOne {
+	Customer{prospectId} to Prospect
+}
+
+
+relationship ManyToOne {
+	CreditRequestLine{productId} to Product
+    CreditRequestLine{creditReasonId} to CreditReason
+    CreditRequestLine{creditReturnTypeId} to CreditReturnType
+	CreditRequestLine{creditRequestId} to CreditRequest
+}
+
+relationship ManyToOne {
+	CreditRequest{customerId} to Customer
+    CreditRequest{creditReferenceTypeId} to CreditReferenceType
+    CreditRequest{creditRequestStatusId} to CreditRequestStatus
+    CreditRequest{appUserId} to AppUser
+}
+
+relationship ManyToOne {
+	AppUser{roleId} to Role
+    AppUser{companyId} to Company
+}
+
+// Set pagination options
+// paginate JobHistory, Employee with infinite-scroll
+// paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+//angularSuffix * with mySuffix

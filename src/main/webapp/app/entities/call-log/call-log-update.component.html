@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-call-log-heading">Create or edit a Call Log</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!callLog.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="callLog.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_callLogId">Call Log Id</label>
+                    <input type="number" class="form-control" name="callLogId" id="field_callLogId"
+                        [(ngModel)]="callLog.callLogId" required/>
+                    <div [hidden]="!(editForm.controls.callLogId?.dirty && editForm.controls.callLogId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.callLogId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.callLogId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_callLogComment">Call Log Comment</label>
+                    <input type="text" class="form-control" name="callLogComment" id="field_callLogComment"
+                        [(ngModel)]="callLog.callLogComment" required/>
+                    <div [hidden]="!(editForm.controls.callLogComment?.dirty && editForm.controls.callLogComment?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.callLogComment?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_callLogDate">Call Log Date</label>
+                    <div class="input-group">
+                        <input id="field_callLogDate" type="text" class="form-control" name="callLogDate" ngbDatepicker  #callLogDateDp="ngbDatepicker" [(ngModel)]="callLog.callLogDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="callLogDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.callLogDate?.dirty && editForm.controls.callLogDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.callLogDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_callLogContactMail">Call Log Contact Mail</label>
+                    <input type="text" class="form-control" name="callLogContactMail" id="field_callLogContactMail"
+                        [(ngModel)]="callLog.callLogContactMail" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customerId">Customer Id</label>
+                    <select class="form-control" id="field_customerId" name="customerId" [(ngModel)]="callLog.customerIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prospectId">Prospect Id</label>
+                    <select class="form-control" id="field_prospectId" name="prospectId" [(ngModel)]="callLog.prospectIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="prospectOption.id" *ngFor="let prospectOption of prospects; trackBy: trackProspectById">{{prospectOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_appUserId">App User Id</label>
+                    <select class="form-control" id="field_appUserId" name="appUserId" [(ngModel)]="callLog.appUserIdId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appUserOption.id" *ngFor="let appUserOption of appusers; trackBy: trackAppUserById">{{appUserOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

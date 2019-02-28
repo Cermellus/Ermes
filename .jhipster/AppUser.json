@@ -1,0 +1,65 @@
+{
+    "name": "AppUser",
+    "fields": [
+        {
+            "fieldName": "appUserId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "appUserUsername",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "appUserPassword",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "appUserName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "appUserMail",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "roleId",
+            "otherEntityName": "role",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "appUser"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "companyId",
+            "otherEntityName": "company",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "appUser"
+        }
+    ],
+    "changelogDate": "20190228040059",
+    "entityTableName": "app_user",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-credit-reason-heading">Create or edit a Credit Reason</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!creditReason.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="creditReason.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonId">Credit Reason Id</label>
+                    <input type="number" class="form-control" name="creditReasonId" id="field_creditReasonId"
+                        [(ngModel)]="creditReason.creditReasonId" required/>
+                    <div [hidden]="!(editForm.controls.creditReasonId?.dirty && editForm.controls.creditReasonId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReasonId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.creditReasonId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonDescription">Credit Reason Description</label>
+                    <input type="text" class="form-control" name="creditReasonDescription" id="field_creditReasonDescription"
+                        [(ngModel)]="creditReason.creditReasonDescription" required/>
+                    <div [hidden]="!(editForm.controls.creditReasonDescription?.dirty && editForm.controls.creditReasonDescription?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReasonDescription?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonCode">Credit Reason Code</label>
+                    <input type="text" class="form-control" name="creditReasonCode" id="field_creditReasonCode"
+                        [(ngModel)]="creditReason.creditReasonCode" required/>
+                    <div [hidden]="!(editForm.controls.creditReasonCode?.dirty && editForm.controls.creditReasonCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReasonCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonProductRequired">Credit Reason Product Required</label>
+                    <input type="checkbox" class="form-control" name="creditReasonProductRequired" id="field_creditReasonProductRequired"
+                        [(ngModel)]="creditReason.creditReasonProductRequired" />
+                    <div [hidden]="!(editForm.controls.creditReasonProductRequired?.dirty && editForm.controls.creditReasonProductRequired?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReasonProductRequired?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditReasonCourierClaim">Credit Reason Courier Claim</label>
+                    <input type="checkbox" class="form-control" name="creditReasonCourierClaim" id="field_creditReasonCourierClaim"
+                        [(ngModel)]="creditReason.creditReasonCourierClaim" />
+                    <div [hidden]="!(editForm.controls.creditReasonCourierClaim?.dirty && editForm.controls.creditReasonCourierClaim?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.creditReasonCourierClaim?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

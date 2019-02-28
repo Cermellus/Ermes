@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="appUser">
+            <h2><span>App User</span> {{appUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>App User Id</span></dt>
+                <dd>
+                    <span>{{appUser.appUserId}}</span>
+                </dd>
+                <dt><span>App User Username</span></dt>
+                <dd>
+                    <span>{{appUser.appUserUsername}}</span>
+                </dd>
+                <dt><span>App User Password</span></dt>
+                <dd>
+                    <span>{{appUser.appUserPassword}}</span>
+                </dd>
+                <dt><span>App User Name</span></dt>
+                <dd>
+                    <span>{{appUser.appUserName}}</span>
+                </dd>
+                <dt><span>App User Mail</span></dt>
+                <dd>
+                    <span>{{appUser.appUserMail}}</span>
+                </dd>
+                <dt><span>Role Id</span></dt>
+                <dd>
+                    <div *ngIf="appUser.roleIdId">
+                        <a [routerLink]="['/role', appUser.roleIdId, 'view']">{{appUser.roleIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Company Id</span></dt>
+                <dd>
+                    <div *ngIf="appUser.companyIdId">
+                        <a [routerLink]="['/company', appUser.companyIdId, 'view']">{{appUser.companyIdId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/app-user', appUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

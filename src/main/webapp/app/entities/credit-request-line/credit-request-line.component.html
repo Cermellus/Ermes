@@ -1,0 +1,91 @@
+<div>
+    <h2 id="page-heading">
+        <span>Credit Request Lines</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-credit-request-line" [routerLink]="['/credit-request-line/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Credit Request Line
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="creditRequestLines">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Credit Request Line Id</span></th>
+            <th><span>Credit Request Line Amount</span></th>
+            <th><span>Credit Request Line Qty Credited</span></th>
+            <th><span>Credit Request Line Qty Return</span></th>
+            <th><span>Credit Request Line Comment</span></th>
+            <th><span>Credit Request Line Image</span></th>
+            <th><span>Product Id</span></th>
+            <th><span>Credit Reason Id</span></th>
+            <th><span>Credit Return Type Id</span></th>
+            <th><span>Credit Request Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let creditRequestLine of creditRequestLines ;trackBy: trackId">
+                <td><a [routerLink]="['/credit-request-line', creditRequestLine.id, 'view' ]">{{creditRequestLine.id}}</a></td>
+                <td>{{creditRequestLine.creditRequestLineId}}</td>
+                <td>{{creditRequestLine.creditRequestLineAmount}}</td>
+                <td>{{creditRequestLine.creditRequestLineQtyCredited}}</td>
+                <td>{{creditRequestLine.creditRequestLineQtyReturn}}</td>
+                <td>{{creditRequestLine.creditRequestLineComment}}</td>
+                <td>
+                    <a *ngIf="creditRequestLine.creditRequestLineImage" (click)="openFile(creditRequestLine.creditRequestLineImageContentType, creditRequestLine.creditRequestLineImage)">open</a>
+                    <span *ngIf="creditRequestLine.creditRequestLineImage">{{creditRequestLine.creditRequestLineImageContentType}}, {{byteSize(creditRequestLine.creditRequestLineImage)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="creditRequestLine.productIdId">
+                        <a [routerLink]="['../product', creditRequestLine.productIdId , 'view' ]" >{{creditRequestLine.productIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequestLine.creditReasonIdId">
+                        <a [routerLink]="['../credit-reason', creditRequestLine.creditReasonIdId , 'view' ]" >{{creditRequestLine.creditReasonIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequestLine.creditReturnTypeIdId">
+                        <a [routerLink]="['../credit-return-type', creditRequestLine.creditReturnTypeIdId , 'view' ]" >{{creditRequestLine.creditReturnTypeIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="creditRequestLine.creditRequestIdId">
+                        <a [routerLink]="['../credit-request', creditRequestLine.creditRequestIdId , 'view' ]" >{{creditRequestLine.creditRequestIdId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/credit-request-line', creditRequestLine.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/credit-request-line', creditRequestLine.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'credit-request-line', { outlets: { popup: creditRequestLine.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

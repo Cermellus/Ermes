@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-product-heading">Create or edit a Product</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!product.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="product.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_productId">Product Id</label>
+                    <input type="number" class="form-control" name="productId" id="field_productId"
+                        [(ngModel)]="product.productId" required/>
+                    <div [hidden]="!(editForm.controls.productId?.dirty && editForm.controls.productId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.productId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.productId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_productCode">Product Code</label>
+                    <input type="text" class="form-control" name="productCode" id="field_productCode"
+                        [(ngModel)]="product.productCode" required/>
+                    <div [hidden]="!(editForm.controls.productCode?.dirty && editForm.controls.productCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.productCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_productDescription">Product Description</label>
+                    <input type="text" class="form-control" name="productDescription" id="field_productDescription"
+                        [(ngModel)]="product.productDescription" required/>
+                    <div [hidden]="!(editForm.controls.productDescription?.dirty && editForm.controls.productDescription?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.productDescription?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_productInactive">Product Inactive</label>
+                    <input type="checkbox" class="form-control" name="productInactive" id="field_productInactive"
+                        [(ngModel)]="product.productInactive" />
+                    <div [hidden]="!(editForm.controls.productInactive?.dirty && editForm.controls.productInactive?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.productInactive?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

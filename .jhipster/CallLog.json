@@ -1,0 +1,62 @@
+{
+    "name": "CallLog",
+    "fields": [
+        {
+            "fieldName": "callLogId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "callLogComment",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "callLogDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "callLogContactMail",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customerId",
+            "otherEntityName": "customer",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLog"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "prospectId",
+            "otherEntityName": "prospect",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLog"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "appUserId",
+            "otherEntityName": "appUser",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLog"
+        }
+    ],
+    "changelogDate": "20190228032607",
+    "entityTableName": "call_log",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

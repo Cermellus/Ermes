@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="creditRequest">
+            <h2><span>Credit Request</span> {{creditRequest.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Credit Request Id</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestId}}</span>
+                </dd>
+                <dt><span>Credit Request Date</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestDate}}</span>
+                </dd>
+                <dt><span>Credit Request Code</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestCode}}</span>
+                </dd>
+                <dt><span>Credit Request Reference</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestReference}}</span>
+                </dd>
+                <dt><span>Credit Request Contact Mail</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestContactMail}}</span>
+                </dd>
+                <dt><span>Credit Request Reject Reason</span></dt>
+                <dd>
+                    <span>{{creditRequest.creditRequestRejectReason}}</span>
+                </dd>
+                <dt><span>Customer Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequest.customerIdId">
+                        <a [routerLink]="['/customer', creditRequest.customerIdId, 'view']">{{creditRequest.customerIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Credit Reference Type Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequest.creditReferenceTypeIdId">
+                        <a [routerLink]="['/credit-reference-type', creditRequest.creditReferenceTypeIdId, 'view']">{{creditRequest.creditReferenceTypeIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Credit Request Status Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequest.creditRequestStatusIdId">
+                        <a [routerLink]="['/credit-request-status', creditRequest.creditRequestStatusIdId, 'view']">{{creditRequest.creditRequestStatusIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>App User Id</span></dt>
+                <dd>
+                    <div *ngIf="creditRequest.appUserIdId">
+                        <a [routerLink]="['/app-user', creditRequest.appUserIdId, 'view']">{{creditRequest.appUserIdId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/credit-request', creditRequest.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

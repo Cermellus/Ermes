@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CreditRequest.
+    -->
+    <changeSet id="20190228032613-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="customer_id_id"
+                                 baseTableName="credit_request"
+                                 constraintName="fk_credit_request_customer_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+
+        <addForeignKeyConstraint baseColumnNames="credit_reference_type_id_id"
+                                 baseTableName="credit_request"
+                                 constraintName="fk_credit_request_credit_reference_type_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="credit_reference_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="credit_request_status_id_id"
+                                 baseTableName="credit_request"
+                                 constraintName="fk_credit_request_credit_request_status_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="credit_request_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="app_user_id_id"
+                                 baseTableName="credit_request"
+                                 constraintName="fk_credit_request_app_user_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_user"/>
+
+    </changeSet>
+</databaseChangeLog>

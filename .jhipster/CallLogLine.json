@@ -1,0 +1,55 @@
+{
+    "name": "CallLogLine",
+    "fields": [
+        {
+            "fieldName": "callLogLineId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "callLogComment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "callLogDueDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productId",
+            "otherEntityName": "product",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLogLine"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "callLogActionId",
+            "otherEntityName": "callLogAction",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLogLine"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "callLogId",
+            "otherEntityName": "callLog",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "callLogLine"
+        }
+    ],
+    "changelogDate": "20190228032606",
+    "entityTableName": "call_log_line",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

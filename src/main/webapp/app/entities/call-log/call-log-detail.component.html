@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="callLog">
+            <h2><span>Call Log</span> {{callLog.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Call Log Id</span></dt>
+                <dd>
+                    <span>{{callLog.callLogId}}</span>
+                </dd>
+                <dt><span>Call Log Comment</span></dt>
+                <dd>
+                    <span>{{callLog.callLogComment}}</span>
+                </dd>
+                <dt><span>Call Log Date</span></dt>
+                <dd>
+                    <span>{{callLog.callLogDate}}</span>
+                </dd>
+                <dt><span>Call Log Contact Mail</span></dt>
+                <dd>
+                    <span>{{callLog.callLogContactMail}}</span>
+                </dd>
+                <dt><span>Customer Id</span></dt>
+                <dd>
+                    <div *ngIf="callLog.customerIdId">
+                        <a [routerLink]="['/customer', callLog.customerIdId, 'view']">{{callLog.customerIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Prospect Id</span></dt>
+                <dd>
+                    <div *ngIf="callLog.prospectIdId">
+                        <a [routerLink]="['/prospect', callLog.prospectIdId, 'view']">{{callLog.prospectIdId}}</a>
+                    </div>
+                </dd>
+                <dt><span>App User Id</span></dt>
+                <dd>
+                    <div *ngIf="callLog.appUserIdId">
+                        <a [routerLink]="['/app-user', callLog.appUserIdId, 'view']">{{callLog.appUserIdId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/call-log', callLog.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

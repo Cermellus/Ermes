@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-ermes-user-heading">Create or edit a Ermes User</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!ermesUser.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="ermesUser.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ermesUserId">Ermes User Id</label>
+                    <input type="number" class="form-control" name="ermesUserId" id="field_ermesUserId"
+                        [(ngModel)]="ermesUser.ermesUserId" required/>
+                    <div [hidden]="!(editForm.controls.ermesUserId?.dirty && editForm.controls.ermesUserId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ermesUserId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.ermesUserId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ermesUserUsername">Ermes User Username</label>
+                    <input type="text" class="form-control" name="ermesUserUsername" id="field_ermesUserUsername"
+                        [(ngModel)]="ermesUser.ermesUserUsername" required/>
+                    <div [hidden]="!(editForm.controls.ermesUserUsername?.dirty && editForm.controls.ermesUserUsername?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ermesUserUsername?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ermesUserPassword">Ermes User Password</label>
+                    <input type="text" class="form-control" name="ermesUserPassword" id="field_ermesUserPassword"
+                        [(ngModel)]="ermesUser.ermesUserPassword" required/>
+                    <div [hidden]="!(editForm.controls.ermesUserPassword?.dirty && editForm.controls.ermesUserPassword?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ermesUserPassword?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ermesUserName">Ermes User Name</label>
+                    <input type="text" class="form-control" name="ermesUserName" id="field_ermesUserName"
+                        [(ngModel)]="ermesUser.ermesUserName" required/>
+                    <div [hidden]="!(editForm.controls.ermesUserName?.dirty && editForm.controls.ermesUserName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ermesUserName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ermesUserMail">Ermes User Mail</label>
+                    <input type="text" class="form-control" name="ermesUserMail" id="field_ermesUserMail"
+                        [(ngModel)]="ermesUser.ermesUserMail" required/>
+                    <div [hidden]="!(editForm.controls.ermesUserMail?.dirty && editForm.controls.ermesUserMail?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ermesUserMail?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_roleId">Role Id</label>
+                    <select class="form-control" id="field_roleId" name="roleId" [(ngModel)]="ermesUser.roleId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="roleOption.id === ermesUser.roleId?.id ? ermesUser.roleId : roleOption" *ngFor="let roleOption of roles; trackBy: trackRoleById">{{roleOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyId">Company Id</label>
+                    <select class="form-control" id="field_companyId" name="companyId" [(ngModel)]="ermesUser.companyId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="companyOption.id === ermesUser.companyId?.id ? ermesUser.companyId : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

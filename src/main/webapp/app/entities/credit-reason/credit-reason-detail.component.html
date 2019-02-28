@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="creditReason">
+            <h2><span>Credit Reason</span> {{creditReason.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Credit Reason Id</span></dt>
+                <dd>
+                    <span>{{creditReason.creditReasonId}}</span>
+                </dd>
+                <dt><span>Credit Reason Description</span></dt>
+                <dd>
+                    <span>{{creditReason.creditReasonDescription}}</span>
+                </dd>
+                <dt><span>Credit Reason Code</span></dt>
+                <dd>
+                    <span>{{creditReason.creditReasonCode}}</span>
+                </dd>
+                <dt><span>Credit Reason Product Required</span></dt>
+                <dd>
+                    <span>{{creditReason.creditReasonProductRequired}}</span>
+                </dd>
+                <dt><span>Credit Reason Courier Claim</span></dt>
+                <dd>
+                    <span>{{creditReason.creditReasonCourierClaim}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/credit-reason', creditReason.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

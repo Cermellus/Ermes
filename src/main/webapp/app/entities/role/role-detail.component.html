@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="role">
+            <h2><span>Role</span> {{role.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Role Id</span></dt>
+                <dd>
+                    <span>{{role.roleId}}</span>
+                </dd>
+                <dt><span>Role Description</span></dt>
+                <dd>
+                    <span>{{role.roleDescription}}</span>
+                </dd>
+                <dt><span>Role Approve</span></dt>
+                <dd>
+                    <span>{{role.roleApprove}}</span>
+                </dd>
+                <dt><span>Role Insert</span></dt>
+                <dd>
+                    <span>{{role.roleInsert}}</span>
+                </dd>
+                <dt><span>Role Edit</span></dt>
+                <dd>
+                    <span>{{role.roleEdit}}</span>
+                </dd>
+                <dt><span>Role Return</span></dt>
+                <dd>
+                    <span>{{role.roleReturn}}</span>
+                </dd>
+                <dt><span>Role Process</span></dt>
+                <dd>
+                    <span>{{role.roleProcess}}</span>
+                </dd>
+                <dt><span>Role See All Rquests</span></dt>
+                <dd>
+                    <span>{{role.roleSeeAllRquests}}</span>
+                </dd>
+                <dt><span>Role Courier Claim</span></dt>
+                <dd>
+                    <span>{{role.roleCourierClaim}}</span>
+                </dd>
+                <dt><span>Role Comment</span></dt>
+                <dd>
+                    <span>{{role.roleComment}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/role', role.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
