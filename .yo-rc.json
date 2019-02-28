@@ -1,0 +1,35 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "nz.co.it4biz"
+        },
+        "jhipsterVersion": "5.8.1",
+        "applicationType": "monolith",
+        "baseName": "Ermes",
+        "packageName": "nz.co.it4biz",
+        "packageFolder": "nz/co/it4biz",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "Y2ExOGMwZDA1OTVmMTBhOWNkOGJmZWZhZTNhYTY3YzZhZjMxZGEwZmJmMmFmZjM3NDgzZTg1Zjk4N2VkYzIxYzg4NmM1MmNjNDQ1ZDA1ZGYwNTQwNzYyZWUwMDc3YzMwNmQwMDI0ZDRiZTc5MjA3ZDk4ZTVhYzZkNGM2ZTM1ZGY=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}
